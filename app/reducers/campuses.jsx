@@ -7,7 +7,7 @@ const ADD_CAMPUS = 'ADD_CAMPUS'
 
 //action creators
 const getCampuses = (campuses) => ({ type: GET_CAMPUSES, campuses })
-const addCampus = (campus) => ({ type: ADD_CAMPUS, campus})
+const addCampus = (campus) => ({ type: ADD_CAMPUS, addedCampus})
 
 //thunks
 export const getCampusesThunk = () => dispatch => {
@@ -30,7 +30,7 @@ const reducer = function(campuses = [], action) {
     case GET_CAMPUSES:
       return action.campuses;
     case ADD_CAMPUS:
-      return action.campus;
+      return action.addedCampus;
     default: return campuses
   }
 };

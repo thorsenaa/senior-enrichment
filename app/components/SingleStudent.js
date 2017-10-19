@@ -1,21 +1,27 @@
-// import React, {Component} from 'react';
-// import { Link } from 'react-router-dom';
-// import {connect} from 'react-redux';
-// import {getStudentsThunk} from '../reducers/students'
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getSingleStudentThunk} from '../reducers/singleStudent'
 
-// export class AllStudents extends Component {
+export class SingleStudent extends Component {
 
-//     render () {
-//         console.log("AllStudents this.props: ", this.props)
-//         return (
-//             <div>
-//             <h3>All Students</h3>
-//             </div>
-//         );
-//     }
-// };
+    componentDidMount() {
+        const studentId = this.props.match.params.id;
+        console.log("ComponentDidMount Student Id: ",studentId)
+        this.props.getSingleStudentThunk(studentId)
+    }
 
-// const mapStateToProps = ({students}) => ({students});
-// const mapDispatchToProps = null;
+    render () {
+        console.log("SingleStudent this.props: ", this.props)
+        return (
+            <div>
+            <h3>Single Student</h3>
+            </div>
+        );
+    }
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(AllStudents);
+const mapStateToProps = ({student}) => ({student});
+const mapDispatchToProps = { getSingleStudentThunk };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleStudent);

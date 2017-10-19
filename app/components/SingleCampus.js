@@ -1,42 +1,29 @@
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getSingleCampusThunk} from '../reducers/singleCampus'
 
-// import React, { Component } from 'react';
-// import axios from 'axios';
-// import AllCampuses from './AllCampuses';
-// import AllStudents from './AllStudents' //trying to get students assigned to that campus - not sure if this is the way
+export class SingleCampus extends Component {
 
-// export default class SingleCampus extends Component {
-//     constructor () {
-//         super();
-//         this.state = {
-//             campus: {}
-//         };
-//     }
 
-//     fetchCampus (id) {
-//         axios.get(`/api/campuses/${id}`)
-//           .then(res => res.data)
-//           .then(campus => this.setState({
-//             campus
-//         }));
-//     }
+    componentDidMount() {
+        const campusId = this.props.match.params.id;
+        console.log("ComponentDidMount Campus Id: ",campusId)
+        this.props.getSingleCampusThunk(campusId)
+    }
 
-//     render () {
-//         const campus = this.state.campus;
-    
-//         return (
-//           <div className="campus">
-//             <div>
-//               <h3>{ campus.name }</h3>
-//               <img src={ campus.imageUrl } className="img-thumbnail" />
-//             </div>
-//             <AllStudents students={campus.students} />
-//           </div>
-//         );
-//       }
+    render () {
+        const campus = this.props.campus;
+        console.log("CAMPUS", campus)
+        return (
+            <div>
+            <h3>Single Campus</h3>
+            </div>
+        );
+    }
+}
 
-// }
+const mapStateToProps = ({singleCampus}) => ({singleCampus});
+const mapDispatchToProps = { getSingleCampusThunk };
 
-// const mapStateToProps = null;
-// const mapDispatchToProps = null;
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AllCampuses);
+export default connect(mapStateToProps, mapDispatchToProps)(SingleCampus);

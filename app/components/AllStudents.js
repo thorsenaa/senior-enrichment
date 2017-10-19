@@ -11,12 +11,10 @@ export class AllStudents extends Component {
             <h3>All Students</h3>
             <div>
             {
-                students.map(student => (
-                    <div className="col-xs-4" key= { student.id }>
-                    <Link className="thumpnail" to={`/students/${student.id}`}>
-                    <span>{ student.name }</span>
+                this.props.students.map(student => (
+                    <Link to={`/students/${student.id}`}>
+                    <li key={student.id}>{student.name}</li>
                     </Link>
-                    </div>
                 ))
             }
             </div>

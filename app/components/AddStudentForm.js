@@ -5,6 +5,11 @@ import {getCampusesThunk} from '../reducers/campuses'
 
 export class AllCampuses extends Component {
 
+/*
+-Navbar - Home and Students buttons
+-boxes for each campus
+*/
+
     render () {
 
         return (

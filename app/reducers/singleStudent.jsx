@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux'
 import axios from 'axios'
 
 //action types
@@ -9,10 +8,12 @@ const GET_SINGLESTUDENT = 'GET_SINGLESTUDENT'
 const getSingleStudent = (student) => ({ type: GET_SINGLESTUDENT, student })
 
 //thunks
-export const getSingleStudentThunk = () => dispatch => {
-  return axios.get('/api/students/:id')
+export const getSingleStudentThunk = (studentId) => dispatch => {
+  console.log('STUDENT ID IN REDUCERS: ', studentId)
+  return axios.get(`/api/students/${studentId}`)
+  .then(student => console.log("INSIDE PROMISE student.data.name", student.data.name))
   .then(student => {
-    dispatch(getSingleStudentThunk(student.data))
+    dispatch(getSingleStudent(student.data))
   })
 }
 
