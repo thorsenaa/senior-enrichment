@@ -14,6 +14,8 @@ export class AllStudents extends Component {
                 this.props.students.map(student => (
                     <Link to={`/students/${student.id}`}>
                     <li key={student.id}>{student.name}</li>
+                    <input type="button" className="btn btn-primary" value="X"/>
+                    <img src={student.img} />
                     </Link>
                 ))
             }

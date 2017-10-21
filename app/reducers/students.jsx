@@ -17,10 +17,12 @@ export const getStudentsThunk = () => dispatch => {
   })
 }
 
-export const addStudentThunk = () => {
-  return axios.post('/api/students')
+export const addStudentThunk = (student) =>  dispatch => {
+  return axios.post('/api/students', student)
+  .then(res => res.data)
+  // .then(student => {console.log("SNIFSDNSIDNFISDF", student)})
   .then(student => {
-    dispatch(addStudent(student.data))
+    dispatch(addStudent(student))
   })
 }
 

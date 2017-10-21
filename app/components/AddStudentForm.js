@@ -1,33 +1,65 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getCampusesThunk} from '../reducers/campuses'
+import AllStudents from './AllStudents'
+import {addStudentThunk} from '../reducers/students'
 
-export class AllCampuses extends Component {
+export class AddStudentForm extends Component {
 
-/*
--Navbar - Home and Students buttons
--boxes for each campus
-*/
+    // constructor(props) {
+    //     super(props)
+    //     this.handleSubmit = this.handleSubmit.bind(this);
+    // }
+
+    // handleSubmit(event) {
+    //     event.preventDefault();
+    //     const newStudent = {
+    //         name: event.target.studentname.value,
+    //         campusId: 1
+    //     }
+    //     console.log(newStudent, this.props)
+    //     addStudentThunk(newStudent)
+    // }
 
     render () {
-
+        const {handleSubmit, campus} = this.props
+        console.log(this.props)
+        
         return (
             <div>
-            <h3>All Campuses</h3>
-            {
-                this.props.campuses.map(campus => (
-                    <Link to={`/campuses/${campus.id}`}>
-                    <li key={campus.id}>{campus.name}</li>
-                    </Link>
-                ))
-            }
+            <h3>Add Student</h3>
+            <form onSubmit={handleSubmit}>
+
+
+              <input
+                name="studentname"
+                type="text"
+                placeholder="Type Name"
+                 />
+
+            <br />
+
+
+          </form>
             </div>
         );
     }
 };
 
-const mapStateToProps = ({campuses}) => ({campuses});
-const mapDispatchToProps = null;
+const mapStateToProps = ({campus}) => ({campus});
+// const mapDispatchToProps = dispatch => { addStudentThunk };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllCampuses);
+const mapDispatchToProps = (dispatch) => {
+    return{
+        handleSubmit(event) {
+            event.preventDefault();
+            const newStudent = {
+                name: event.target.studentname.value,
+                campusId: 1
+            }
+            console.log(newStudent)
+            dispatch(addStudentThunk(newStudent))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddStudentForm);
